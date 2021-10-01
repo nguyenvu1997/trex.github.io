@@ -4,4 +4,4 @@ T-Rex Runner
 # Run game
 ```bash
 npx serve
-```git 
+``` 
