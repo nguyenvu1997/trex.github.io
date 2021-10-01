@@ -31,6 +31,9 @@ export class TRexGame extends GameEngine {
         TRexGame.gamePlayScene.addObject(TRexGame.ground);
     }
     static update() {
+        let time = window.performance.now();
+        let delta = window.performance.now() - TRexGame.lastTime;
+        TRexGame.lastTime = time;
         Canvas.ctx.clearRect(0, 0, Canvas.width, Canvas.height);
         if (TRexGame.isStart) {
             TRexGame.canvasRenderer.render(TRexGame.gameOpenScene);
@@ -42,7 +45,7 @@ export class TRexGame extends GameEngine {
             if (TRexGame.isAlive) {
                 TRexGame.score++;
                 TRexGame.gameScore.text = "Score: " + TRexGame.score;
-                TRexGame.gamePlayScene.update();
+                TRexGame.gamePlayScene.update(time, delta);
                 TRexGame.canvasRenderer.render(TRexGame.gamePlayScene);
                 TRexGame.isAlive = GamePlayScene.isAlive;
                 if (TRexGame.score > TRexGame.high) {

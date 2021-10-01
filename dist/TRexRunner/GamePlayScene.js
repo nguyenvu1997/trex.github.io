@@ -35,7 +35,7 @@ export class GamePlayScene extends Scene {
     randomIntInRange(min, max) {
         return Math.round(Math.random() * (max - min) + min);
     }
-    update() {
+    update(time, delta) {
         let cvRender = new CanvasRenderer();
         this.objectList.forEach(element => {
             element.update();
@@ -51,7 +51,7 @@ export class GamePlayScene extends Scene {
         }
         for (let i = 0; i < this.clouds.length; i++) {
             let c = this.clouds[i];
-            c.update();
+            c.update(time, delta);
             cvRender.renderImage(c);
         }
         for (let i = 0; i < this.obstacles.length; i++) {
@@ -61,7 +61,7 @@ export class GamePlayScene extends Scene {
                 this.obstacles = [];
                 GamePlayScene.isAlive = false;
             }
-            o.update();
+            o.update(time, delta);
             cvRender.renderImage(o);
         }
     }

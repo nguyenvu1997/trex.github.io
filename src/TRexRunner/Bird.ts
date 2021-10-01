@@ -6,6 +6,7 @@ export class Bird extends ImageObject {
     originalY: number = this.y;
     drawBirdTimer: number = 0;
     type: number;
+    velocityX: number = 10;
 
     constructor(imageUrl: string, sx: number, sy: number, sw: number, sh: number, x: number, y: number, width: number, height: number){
         super(imageUrl, sx, sy, sw,sh, x,y ,width,height)
@@ -16,8 +17,8 @@ export class Bird extends ImageObject {
         return Math.round(Math.random() * (max - min) + min);
     }
 
-    update() {
-        this.x -= 5
+    update(time:number, delta: number) {
+        this.x -= this.velocityX + delta/1000;
         
         if (this.type == 1) {
             this.y = this.originalY;

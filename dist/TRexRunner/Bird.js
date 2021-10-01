@@ -5,13 +5,14 @@ export class Bird extends ImageObject {
         this.originalSX = this.sx;
         this.originalY = this.y;
         this.drawBirdTimer = 0;
+        this.velocityX = 10;
         this.type = this.randomIntInRange(0, 2);
     }
     randomIntInRange(min, max) {
         return Math.round(Math.random() * (max - min) + min);
     }
-    update() {
-        this.x -= 5;
+    update(time, delta) {
+        this.x -= this.velocityX + delta / 1000;
         if (this.type == 1) {
             this.y = this.originalY;
             if (this.drawBirdTimer <= 10) {

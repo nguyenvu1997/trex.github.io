@@ -1,6 +1,6 @@
 import { ImageObject } from "../GameEngine/ImageObject.js";
 export class Cloud extends ImageObject {
-    update() {
+    update(time, delta) {
         this.x -= 3;
     }
 }

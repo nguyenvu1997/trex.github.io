@@ -1,6 +1,10 @@
 import { ImageObject } from "../GameEngine/ImageObject.js";
 export class Castus extends ImageObject {
-    update() {
-        this.x -= 5;
+    constructor() {
+        super(...arguments);
+        this.velocityX = 10;
+    }
+    update(time, delta) {
+        this.x -= this.velocityX + delta / 1000;
     }
 }
