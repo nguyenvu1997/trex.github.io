@@ -1,4 +1,7 @@
+import { Scene } from "./Scene.js";
+
 export class SceneManager {
+
     scenes: Scene[];
 
     loadScene() {
@@ -8,4 +11,5 @@ export class SceneManager {
     addScene(scene: Scene) {
         this.scenes.push(scene)
     }
+    
 }

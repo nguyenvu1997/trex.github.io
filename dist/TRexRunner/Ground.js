@@ -1,5 +1,5 @@
-import { GameImg } from "../GameEngine/GameImg.js";
-export class Ground extends GameImg {
+import { ImageObject } from "../GameEngine/ImageObject.js";
+export class Ground extends ImageObject {
     update() {
         return;
     }

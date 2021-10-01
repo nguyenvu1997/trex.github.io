@@ -1,17 +1,18 @@
 export class Canvas {
-    width: number;
-    height: number;
+    
+    static width: number;
+    static height: number;
     static ctx: CanvasRenderingContext2D;
 
     constructor(width: number, height: number) {
-        this.width = width;
-        this.height = height;
+        Canvas.width = width;
+        Canvas.height = height;
     }
 
     create(el: HTMLCanvasElement) {
-        el = document.querySelector('#test-ge');
-        el.height = this.height;
-        el.width = this.width;
+        el.height = Canvas.height;
+        el.width = Canvas.width;
         Canvas.ctx = el.getContext("2d");
     }
+
 }

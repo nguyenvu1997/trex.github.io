@@ -1,5 +1,5 @@
-import { GameImg } from "../GameEngine/GameImg.js";
-export class Castus extends GameImg {
+import { ImageObject } from "../GameEngine/ImageObject.js";
+export class Castus extends ImageObject {
     update() {
         this.x -= 5;
     }

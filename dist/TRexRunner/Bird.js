@@ -1,20 +1,40 @@
-import { GameImg } from "../GameEngine/GameImg.js";
-export class Bird extends GameImg {
-    constructor() {
-        super(...arguments);
+import { ImageObject } from "../GameEngine/ImageObject.js";
+export class Bird extends ImageObject {
+    constructor(imageUrl, sx, sy, sw, sh, x, y, width, height) {
+        super(imageUrl, sx, sy, sw, sh, x, y, width, height);
         this.originalSX = this.sx;
+        this.originalY = this.y;
         this.drawBirdTimer = 0;
+        this.type = this.randomIntInRange(0, 2);
+    }
+    randomIntInRange(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
     }
     update() {
         this.x -= 5;
-        if (this.drawBirdTimer <= 10) {
-            this.sx = this.originalSX;
-        }
-        else if (this.drawBirdTimer <= 20) {
-            this.sx = this.originalSX + 88;
+        if (this.type == 1) {
+            this.y = this.originalY;
+            if (this.drawBirdTimer <= 10) {
+                this.sx = this.originalSX;
+            }
+            else if (this.drawBirdTimer <= 20) {
+                this.sx = this.originalSX + 88;
+            }
+            else {
+                this.drawBirdTimer = 0;
+            }
         }
         else {
-            this.drawBirdTimer = 0;
+            this.y = this.originalY - 80;
+            if (this.drawBirdTimer <= 10) {
+                this.sx = this.originalSX;
+            }
+            else if (this.drawBirdTimer <= 20) {
+                this.sx = this.originalSX + 88;
+            }
+            else {
+                this.drawBirdTimer = 0;
+            }
         }
         this.drawBirdTimer++;
     }

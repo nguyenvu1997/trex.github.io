@@ -1,5 +1,5 @@
-import { GameText } from "../GameEngine/GameText.js";
-export class Score extends GameText {
+import { TextObject } from "../GameEngine/TextObject.js";
+export class Score extends TextObject {
     update() {
         return;
     }

@@ -2,7 +2,6 @@ import { SceneManager } from "./SceneManager.js";
 
 export class GameEngine {
     scenes: SceneManager;
-
     lastTime: number = window.performance.now();
 
     loop(): void {

@@ -1,12 +1,11 @@
 export class Canvas {
     constructor(width, height) {
-        this.width = width;
-        this.height = height;
+        Canvas.width = width;
+        Canvas.height = height;
     }
     create(el) {
-        el = document.querySelector('#test-ge');
-        el.height = this.height;
-        el.width = this.width;
+        el.height = Canvas.height;
+        el.width = Canvas.width;
         Canvas.ctx = el.getContext("2d");
     }
 }

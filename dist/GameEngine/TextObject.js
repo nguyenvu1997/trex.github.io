@@ -1,4 +1,4 @@
-export class GameText {
+export class TextObject {
     constructor(text, x, y, align, color, size) {
         this.text = text;
         this.x = x;

@@ -1,7 +1,9 @@
-import { GameImg } from "../GameEngine/GameImg.js";
+import { ImageObject } from "../GameEngine/ImageObject.js";
 
-export class Cloud extends GameImg {
+export class Cloud extends ImageObject {
+
     update() {
         this.x -= 3
     }
+    
 }

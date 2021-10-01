@@ -1,22 +1,20 @@
+import { Canvas } from "./Canvas.js";
 import { CanvasImage } from "./CanvasImage.js";
 import { GameEngine } from "./GameEngine.js";
-import { GameImg } from "./GameImg.js";
-import { GameText } from "./GameText";
-import { Canvas } from "./Canvas.js";
+import { ImageObject } from "./ImageObject.js";
+import { Scene } from "./Scene.js";
+import { TextObject } from "./TextObject.js";
 
 export class CanvasRenderer {
-    game: GameEngine;
+
+    gameEngine: GameEngine;
     canvasImage: CanvasImage;
-
-    constructor() {
-
-    }
 
     render(scene: Scene) {
         scene.objectList.forEach(obj => {
-            if (obj instanceof GameImg) {
+            if (obj instanceof ImageObject) {
                 this.renderImage(obj)
-            } else if (obj instanceof GameText) {
+            } else if (obj instanceof TextObject) {
                 this.renderText(obj)
             } else {
                 console.log('Cannot Rendering')
@@ -42,4 +40,5 @@ export class CanvasRenderer {
         Canvas.ctx.fillText(text, x, y);
         Canvas.ctx.closePath();
     }
+    
 }

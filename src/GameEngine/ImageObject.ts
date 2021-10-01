@@ -1,7 +1,8 @@
 import { Canvas } from "./Canvas.js";
 import { GameObject } from "./GameObject.js";
 
-export class GameImg extends GameObject {
+export class ImageObject extends GameObject {
+
     canvas: Canvas;
     imageUrl: string;
     sx: number;
@@ -23,4 +24,5 @@ export class GameImg extends GameObject {
         this.sh = sh;
         this.image.src = imageUrl
     }
+    
 }

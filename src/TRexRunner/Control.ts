@@ -1,4 +1,5 @@
 export class Control {
+
     static keys = {};
 
     handleInput() {
@@ -9,4 +10,5 @@ export class Control {
             Control.keys[evt.code] = false;
         });
     }
+
 }

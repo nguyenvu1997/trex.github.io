@@ -1,4 +1,5 @@
-class Scene {
+export class Scene {
+
     objectList: Object[];
 
     constructor() {
@@ -8,4 +9,5 @@ class Scene {
     update(time: number, delta: number): void {
 
     }
+    
 }

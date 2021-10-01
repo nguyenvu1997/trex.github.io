@@ -1,11 +1,11 @@
-export class GameText {
+export class TextObject {
+
     text: string;
     x: number;
     y: number;
     align: string;
     color: string;
     size: string;
-
 
     constructor(text: string, x: number, y: number, align: string, color: string, size: string) {
         this.text = text;
@@ -15,4 +15,5 @@ export class GameText {
         this.color = color;
         this.size = size;
     }
+    
 }

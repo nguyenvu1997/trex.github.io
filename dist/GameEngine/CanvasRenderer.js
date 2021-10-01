@@ -1,16 +1,14 @@
-import { CanvasImage } from "./CanvasImage.js";
-import { GameImg } from "./GameImg.js";
-import { GameText } from "./GameText";
 import { Canvas } from "./Canvas.js";
+import { CanvasImage } from "./CanvasImage.js";
+import { ImageObject } from "./ImageObject.js";
+import { TextObject } from "./TextObject.js";
 export class CanvasRenderer {
-    constructor() {
-    }
     render(scene) {
         scene.objectList.forEach(obj => {
-            if (obj instanceof GameImg) {
+            if (obj instanceof ImageObject) {
                 this.renderImage(obj);
             }
-            else if (obj instanceof GameText) {
+            else if (obj instanceof TextObject) {
                 this.renderText(obj);
             }
             else {
