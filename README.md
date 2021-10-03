@@ -7,4 +7,4 @@ npx serve
 ``` 
 
 # Demo
-https://dashboard.heroku.com/apps/t-rex-runner-135/deploy/github
+https://t-rex-runner-135.herokuapp.com/
