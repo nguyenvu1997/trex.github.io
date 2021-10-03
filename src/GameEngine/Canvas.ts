@@ -1,15 +1,10 @@
 export class Canvas {
     
-    static width: number;
-    static height: number;
+    static width: number = 1500;
+    static height: number = 600;
     static ctx: CanvasRenderingContext2D;
 
-    constructor(width: number, height: number) {
-        Canvas.width = width;
-        Canvas.height = height;
-    }
-
-    create(el: HTMLCanvasElement) {
+    static init(el: HTMLCanvasElement) {
         el.height = Canvas.height;
         el.width = Canvas.width;
         Canvas.ctx = el.getContext("2d");

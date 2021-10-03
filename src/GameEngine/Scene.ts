@@ -7,7 +7,7 @@ export class Scene {
     }
 
     update(time: number, delta: number): void {
-
+        
     }
     
 }

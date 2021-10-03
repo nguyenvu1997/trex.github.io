@@ -3,6 +3,9 @@ import { ImageObject } from "../GameEngine/ImageObject.js";
 import { TextObject } from "../GameEngine/TextObject.js";
 import { Canvas } from "../GameEngine/Canvas.js";
 import { Score } from "./Score.js";
+import { Control } from "./Control.js";
+import { SceneManager } from "../GameEngine/SceneManager.js";
+import { GamePlayScene } from "./GamePlayScene.js";
 
 export class GameOverScene extends Scene {
     
@@ -17,8 +20,13 @@ export class GameOverScene extends Scene {
     static score = 0;
     static high = 0;
 
+    sceneManager: SceneManager;
+
     constructor() {
         super();
+
+        this.sceneManager = new SceneManager();
+
         this.gameOver = new ImageObject(this.imgUrl, 0, 0, 75, 100, Canvas.width / 2, Canvas.height / 2, 99, 100)
         this.textGO = new TextObject("GAME OVER", Canvas.width / 2 + 45, Canvas.height / 2 - 20, 'center', 'black', '30')
         this.ground = new ImageObject(this.imgUrl, 0, 100, 2300, 500, 0, 568, 2000, 500)
@@ -33,9 +41,17 @@ export class GameOverScene extends Scene {
         this.objectList.push(this.highScore)
     }
 
-    update() {
-        this.gameScore.text = "Score: " + GameOverScene.score;
-        this.highScore.text = "High Score: " + GameOverScene.high;
+    update(time: number, delta: number) {
+        Canvas.ctx.clearRect(0, 0, Canvas.width, Canvas.height);
+
+        this.gameScore.text = "Score: " + GamePlayScene.data['score'];
+        this.highScore.text = "High Score: " + GamePlayScene.data['high'];
+
+        GameOverScene.high = GamePlayScene.data['high']
+
+        if (Control.keys['Space']){
+            SceneManager.currentScene = new GamePlayScene();
+        }
     }
 
 }

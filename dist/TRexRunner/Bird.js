@@ -26,7 +26,7 @@ export class Bird extends ImageObject {
             }
         }
         else {
-            this.y = this.originalY - 80;
+            this.y = this.originalY - 50;
             if (this.drawBirdTimer <= 10) {
                 this.sx = this.originalSX;
             }

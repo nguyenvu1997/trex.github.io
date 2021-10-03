@@ -1,26 +1,60 @@
-import { TRexGame } from "../Game.js";
+import { Canvas } from "../GameEngine/Canvas.js";
 import { CanvasRenderer } from "../GameEngine/CanvasRenderer.js";
 import { Scene } from "../GameEngine/Scene.js";
+import { SceneManager } from "../GameEngine/SceneManager.js";
 import { Bird } from "./Bird.js";
 import { Castus } from "./Castus.js";
 import { Cloud } from "./Cloud.js";
+import { GameOverScene } from "./GameOverScene.js";
+import { Ground } from "./Ground.js";
 import { Player } from "./Player.js";
+import { Score } from "./Score.js";
 
 export class GamePlayScene extends Scene {
 
     objectList = [];
+
+    score: number;
+    gameScore: Score;
+    high: number;
+    highScore: Score;
+
     initialSpawnTimer: number = 200;
     spawnTimer: number = this.initialSpawnTimer;
-    clouds = [];
-    obstacles = [];
     cloud: Cloud;
+    clouds = [];
     bird: Bird;
     castus: Castus;
-    imgUrl: string = "./img/200-offline-sprite.png";
-    static isAlive = true;
+    obstacles = [];
+    ground: Ground;
+    player: Player;
+    sceneManager: SceneManager;
+
+    static data = {}
+
+    isAlive = true;
+
+    readonly imgUrl: string = "./img/200-offline-sprite.png";
 
     constructor() {
         super();
+
+        this.sceneManager = new SceneManager();
+
+        this.score = 0;
+        this.high = GameOverScene.high;
+        this.gameScore = new Score("Score: " + this.score, 25, 25, "left", "black", "20");
+        this.highScore = new Score("High Score: " + this.high, Canvas.width, 25, "right", "black", "20");
+
+        this.ground = new Ground(this.imgUrl, 0, 100, 2300, 500, 0, 568, 2000, 500);
+        this.player = new Player(this.imgUrl, 75, 0, 85, 100, 30, 200, 85, 100);
+
+        this.objectList.push(this.gameScore, this.highScore, this.ground, this.player)
+
+        GamePlayScene.data = {
+            'score': 0,
+            'high': 0
+        }
     }
 
     spawnCloud() {
@@ -50,11 +84,29 @@ export class GamePlayScene extends Scene {
     }
 
     update(time: number, delta: number) {
+        Canvas.ctx.clearRect(0, 0, Canvas.width, Canvas.height);
+
+        // Score
+        this.score++;
+        this.gameScore.text = "Score: " + this.score;
+
+        if (this.isAlive) {
+            if (this.score > this.high) {
+                this.high = this.score;
+                this.highScore.text = "High Score: " + this.high;
+            }
+        } else {
+            this.isAlive = true;
+            this.score = 0;
+        }
+
         let cvRender = new CanvasRenderer();
         this.objectList.forEach(element => {
-            element.update()
+            element.update();
         });
 
+
+        // Spawn clouds and obstacles
         this.spawnTimer--;
         if (this.spawnTimer <= 0) {
             this.spawnCloud();
@@ -75,14 +127,16 @@ export class GamePlayScene extends Scene {
         for (let i = 0; i < this.obstacles.length; i++) {
             let o = this.obstacles[i];
             if (Player.position.x < o.x + o.width && Player.position.x + Player.position.width > o.x &&
-                Player.position.y < o.y + o.height && Player.position.y + Player.position.height > o.y) 
-            {
+                Player.position.y < o.y + o.height && Player.position.y + Player.position.height > o.y) {
                 this.obstacles = []
-                GamePlayScene.isAlive = false;
+                this.isAlive = false;
+                GamePlayScene.data['score'] = this.score;
+                GamePlayScene.data['high'] = this.high;
+                SceneManager.currentScene = new GameOverScene();
             }
             o.update(time, delta);
             cvRender.renderImage(o);
         }
     }
-    
+
 }
