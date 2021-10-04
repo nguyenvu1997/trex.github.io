@@ -5,3 +5,6 @@ T-Rex Runner
 ```bash
 npx serve
 ``` 
+
+# Demo
+https://t-rex-runner-135.herokuapp.com/
