@@ -1,6 +1,4 @@
 export class SceneManager {
-    loadScene() {
-    }
     addScene(scene) {
         SceneManager.scenes.push(scene);
         if (SceneManager.scenes.length == 1) {

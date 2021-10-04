@@ -5,10 +5,6 @@ export class SceneManager {
     static scenes: Scene[] = [];
     static currentScene: Scene;
 
-    loadScene() {
-
-    }
-
     addScene(scene: Scene){
         SceneManager.scenes.push(scene)
         if(SceneManager.scenes.length == 1){

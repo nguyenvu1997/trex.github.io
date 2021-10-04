@@ -2,7 +2,6 @@ import { Canvas } from "../GameEngine/Canvas.js";
 import { ImageObject } from "../GameEngine/ImageObject.js";
 import { Control } from "./Control.js";
 
-
 export class Player extends ImageObject {
 
     dy: number = 0;
